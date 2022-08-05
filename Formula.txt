@@ -1,0 +1,15 @@
+Formula for text-as-data research 
+
+
+What question do you want to answer? This should be something you *actually* want to know, and it should end in a question mark.
+
+
+
+What source of text data will you use?
+
+
+What are two possible answers to the question?
+
+
+How will the results of the quantitative text analysis demonstrate which of those answers is correct?
+
