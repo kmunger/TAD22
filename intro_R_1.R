@@ -1,7 +1,4 @@
-#title: "Setting Up R"
-#author: "Taken from code prepared by Pablo Barbera, Dan Cervone"
-#---
-  
+
 #Welcome to the course! 
   
 #The goal of this first lesson is to provide an introduction to R for non-programmers.
@@ -37,7 +34,6 @@
 #You can also embed plots and graphics, for example:
 x <- c(1, 3, 4, 5) #this means you "assign" c(1, 3, 4, 5) to an object called x
 y <- c(2, 6, 8, 10)
-dev.new(width=10, height=10)
 plot(x, y)
 
 #If you run the chunk of code, the plot will be generated on the panel on the bottom right corner. 
