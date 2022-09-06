@@ -11,9 +11,9 @@ getwd()
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
+#edit
 
-
-hony <- read.csv("humansofnewyork.csv", stringsAsFactors=FALSE) # read in data, character vectors treated as character vectors (not factors)
+hony <- read.csv("C:/Users/Kevin/Desktop/TAD22/humansofnewyork1.csv", stringsAsFactors=FALSE) # read in data, character vectors treated as character vectors (not factors)
 str(hony) # examine its structure
 
 
