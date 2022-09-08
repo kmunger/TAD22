@@ -7,13 +7,15 @@
 install.packages("rstudioapi")
 library(rstudioapi)
 
-getwd()
-
+?getwd()
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+
+setwd("C:/Users/Kevin/Desktop/TAD22/")
 
 #edit
 
-hony <- read.csv("C:/Users/Kevin/Desktop/TAD22/humansofnewyork1.csv", stringsAsFactors=FALSE) # read in data, character vectors treated as character vectors (not factors)
+hony <- read.csv("humansofnewyork1.csv", stringsAsFactors=FALSE) # read in data, character vectors treated as character vectors (not factors)
 str(hony) # examine its structure
 
 

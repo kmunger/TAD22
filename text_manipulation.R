@@ -12,7 +12,10 @@
 
 #The fundamental type (or `mode`) in which R stores text is the character vector. The most simple case is a character vector of length one. The `nchar` function returns the number of characters in a character vector. 
 
-require(quanteda)
+install.packages("quanteda")
+
+library(quanteda)
+
 s1 <- 'my example text'
 length(s1)
 nchar(s1)
@@ -27,12 +30,16 @@ sum(nchar(s2))
 #We can use this to answer some simple questions about the inaugural addresses.
 
 #Which were the longest and shortest speeches?
+?data_corpus_inaugural
 
 inaugTexts <- texts(data_corpus_inaugural)
-which.max(nchar(inaugTexts))
+
+max(nchar(inaugTexts))
 which.min(nchar(inaugTexts))
 
-#Unlike in some other programming languages, it is not possible to index into a "string" -- where a string is defined as a sequence of text characters -- in R:
+#Unlike in some other programming languages, 
+#it is not possible to index into a "string" --
+#where a string is defined as a sequence of text characters -- in R:
   
 s1 <- 'This file contains many fascinating example sentences.'
 s1[6:9]
@@ -40,21 +47,23 @@ s1[6:9]
 #To extract a substring, instead we use the `substr` function. 
 
 s1 <- 'This file contains many fascinating example sentences.'
-substr(s1, 6,9)
+substr(s1, 5,9)
 
 #Often we would like to split character vectors to extract a term of interest. This is possible using the `strsplit` function. Consider the names of the inaugural texts:
   
 names(inaugTexts)
 # returns a list of parts
 s1 <- 'split this string'
-strsplit(s1, 'this')
+x<-strsplit(s1, 'this')
+
 parts <- strsplit(names(inaugTexts), '-')
 years <- sapply(parts, function(x) x[1])
 pres <-  sapply(parts, function(x) x[2])
 
 #The `paste` function is used to join character vectors together. The way in which the elements are combined depends on the values of the `sep` and `collapse` arguments:
-  
+  ?paste
 paste('one','two','three')
+
 paste('one','two','three', sep='_')
 paste(years, pres, sep='-')
 paste(years, pres, collapse='-')
@@ -91,11 +100,19 @@ c2 %in% c1
 grep('orangef', 'these are oranges')
 grep('pear', 'these are oranges')
 grep('orange', c('apples', 'oranges', 'pears'))
-grep('pears', c('apples', 'oranges', 'pears'))
+grepl('pears', c('apples', 'oranges', 'pears'))
+
+?grepl
+
 
 #The `gsub` command substitutes one pattern for another within a string:
 
 gsub('oranges', 'apples', 'these are oranges')
+
+gsub(replacement= 'apples',x ='these are oranges',pattern= 'oranges')
+
+pattern
+?gsub
 
 ### Regular expressions in **stringi** and **stringr**
 
