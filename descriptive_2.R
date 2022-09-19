@@ -1,6 +1,7 @@
 
 install.packages("quanteda")
 library(quanteda)
+library(quanteda.textstats)
 
 
 ##toy data
@@ -49,12 +50,9 @@ plot(ttr)
 
 #aggregate(df$ttr, by=list(df$year), FUN=mean)
 
+
 aggregate(ttr, by = list(docvars(data_corpus_inaugural)$Party), FUN = mean)
 
-
-
-# another way:
-textstat_lexdiv(dfm(data_corpus_inaugural, groups = "President", verbose = FALSE))
 
 
 ##let's look at FRE
