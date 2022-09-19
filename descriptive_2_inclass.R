@@ -1,6 +1,5 @@
 # Descriptive practice
 
-
 #1. Write two sentences. Save each as a seperate object in R. 
 
 require(quanteda)
@@ -17,6 +16,5 @@ require(quanteda)
 #5. Calculate the TTR for each of these dfms (use textstat_lexdiv). Which is higher?
   
 
-#6. Calculate the Manhattan distance between the two sentences you've constructed (by hand!)
 
 
