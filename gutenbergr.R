@@ -14,6 +14,7 @@
 # 
 # The dataset `gutenberg_metadata` contains information about each work, pairing Gutenberg ID with title, author, language, etc:
   install.packages("curl")
+  
 library(gutenbergr)
 
 gutenberg_metadata
@@ -23,12 +24,20 @@ str(gutenberg_metadata)
 
 library(dplyr)
 
+
 gutenberg_metadata %>%
   filter(title == "Wuthering Heights")
 
-# In many analyses, you may want to filter just for English works, avoid duplicates, and include only books that have text that can be downloaded. The `gutenberg_works()` function does this pre-filtering:
+
+filter(gutenberg_metadata, title == "Wuthering Heights")
+
+
+
+# In many analyses, you may want to filter just for English works, avoid duplicates,
+#and include only books that have text that can be downloaded. The `gutenberg_works()` function does this pre-filtering:
 
 gutenberg_works()
+
 ?gutenberg_works
 
 # It also allows you to perform filtering as an argument:
@@ -37,11 +46,14 @@ gutenberg_works(author == "Austen, Jane")
 
 # or with a regular expression
 
+
 library(stringr)
+
 gutenberg_works(str_detect(author, "Austen"))
 
 # different languages => see list of ISO codes (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-unique(gutenberg_metadata$language)
+length(unique(gutenberg_metadata$language))
+
 gutenberg_works(languages = "no") # Norwegian books
  
 
@@ -55,6 +67,8 @@ wuthering_heights <- gutenberg_download(768, mirror = my_mirror)
 
 View(wuthering_heights)
 
+wuthering_heights$text[100]
+xx<-paste0(wuthering_heights$text)
 #' Notice it is returned as a tbl_df (a type of data frame) including two variables: `gutenberg_id` (useful if multiple books are returned), and a character vector of the text, one row per line. Notice that the header and footer added by Project Gutenberg (visible [here](http://www.gutenberg.org/files/768/768.txt)) have been stripped away.
 
 #' Provide a vector of IDs to download multiple books. For example, to download Jane Eyre (book [1260](https://www.gutenberg.org/ebooks/1260)) along with Wuthering Heights, do:
@@ -63,6 +77,8 @@ View(wuthering_heights)
 books <- gutenberg_download(c(768, 1260), meta_fields = "title", mirror = my_mirror)
 
 books
+
+books$title[30000]
 
 #' Notice that the `meta_fields` argument allows us to add one or more additional fields from the `gutenberg_metadata` to the downloaded text, such as title or author.
 
@@ -93,6 +109,7 @@ gutenberg_subjects %>%
 
 ### create dtm/dfm
 wuthering_heights <- gutenberg_download(768, mirror = my_mirror) 
+
 wuthering_heights <- wuthering_heights[!(wuthering_heights$text==""), ] # remove the empty spaces 
 wuthering_heights <- wuthering_heights[-c(1:2),] # remove first two rows. 
 
