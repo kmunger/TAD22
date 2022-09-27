@@ -163,7 +163,7 @@ plot(nb_model$param[1,], nb_model_sm$param[1,], xlim = c(0,0.02), ylim = c(0,0.0
 # argument in quanteda?
 
 
-#3. Re-run the code with prior = "docfreq". Think about the proportions of classes in the dataset. How should this affect your outcome?
+#3.TODO THURSDAY Re-run the code with prior = "docfreq". Think about the proportions of classes in the dataset. How should this affect your outcome?
 # Looking at the results of the code, were you right?
 
 
