@@ -27,7 +27,6 @@ news_data <- readRDS("news_data.rds")
 
 # subset data and keep relevant variables
 #filter-- restricts dataset, dropping rows
-
 news_samp <- filter(news_data, category %in% c("CRIME", "SPORTS"))
   
 ##select --- keeps only named columns
@@ -57,7 +56,7 @@ set.seed(1984L)
 
 ###what does this do??
 
-prop_train <- 0.8
+prop_train <- 0.2
 
 ###need to create a training set that's 80% of the data
 ids <- 1:nrow(news_samp2)
@@ -163,8 +162,16 @@ plot(nb_model$param[1,], nb_model_sm$param[1,], xlim = c(0,0.02), ylim = c(0,0.0
 # argument in quanteda?
 
 
+
 #3.TODO THURSDAY Re-run the code with prior = "docfreq". Think about the proportions of classes in the dataset. How should this affect your outcome?
 # Looking at the results of the code, were you right?
 
+
+#4.TODO THURSDAY Re-run the code to train a model to predict
+# the classes "SCIENCE" and "RELIGION" instead of 
+#crime and sports.
+
+## How do you think this willaffect your outcome?
+# Looking at the results of the code, were you right?
 
 
