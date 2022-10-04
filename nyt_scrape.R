@@ -9,8 +9,10 @@ library(stringr)
 
 setwd("C:/Users/kevin/Documents/GitHub/TAD22/")
 
+NYTIMES_KEY <- ("DAC5ZOAEeA3jVyotfGWtJddg8j4lEXjo")
 
-NYTIMES_KEY <- ("GmZS4yNWnVdAUqyPcSr3zub25T2h7GoN")
+#NYTIMES_KEY <- ("GmZS4yNWnVdAUqyPcSr3zub25T2h7GoN")
+
 
 term <- "facebook"
 begin_date <- "20200101"
