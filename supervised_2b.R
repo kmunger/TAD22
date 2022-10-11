@@ -1,15 +1,17 @@
-----------------------
+#----------------------
 # Set up environment                   ---
 #----------------------------------------
 # clear global environment
+
 rm(list = ls())
 
-setwd("C:/Users/kevin/Documents/GitHub/TAD21/")
+setwd("C:/Users/kevin/Documents/GitHub/TAD22/")
 
 # load required libraries
 library(quanteda)
 library(readtext)
 library(dplyr)
+library(quanteda.textmodels)
 
 #----------------------------------------
 # 2 Classification using Word Scores     ---
@@ -27,7 +29,7 @@ cons_labour_manifestos <- corpus(readtext("cons_labour_manifestos/*.txt"))
 docvars(cons_labour_manifestos, field = c("party", "year") ) <- data.frame(cbind(party, year))
 
 # But we're going to use a dataframe
-cons_labour_df <- data.frame(text = texts(cons_labour_manifestos),
+cons_labour_df <- data.frame(text = as.character(cons_labour_manifestos),
                          party = party,
                          year = as.integer(year))
 colnames(cons_labour_df)
@@ -48,7 +50,10 @@ train_set <- cons_labour_df[ids_train,]
 test_set <- cons_labour_df[ids_test,]
 
 # create DFMs
+
 train_dfm <- dfm(train_set$text, remove_punct = TRUE, remove = stopwords("english"))
+
+
 test_dfm <- dfm(test_set$text, remove_punct = TRUE, remove = stopwords("english"))
 
 # Word Score model w/o smoothing ----------------
@@ -94,9 +99,6 @@ predict(ws_sm, newdata = test_dfm,
 plot(ws_base$wordscores, ws_sm$wordscores, xlim=c(-1, 1), ylim=c(-1, 1),
      xlab="No Smooth", ylab="Smooth")
 
-####Be sure to save it as a new file, with a new filename!
-
-
 
 # We're using all but one manifesto as a "reference text" --- this isn't how wordscores is supposed to work!
 
@@ -106,6 +108,7 @@ plot(ws_base$wordscores, ws_sm$wordscores, xlim=c(-1, 1), ylim=c(-1, 1),
 
 
 #2. Predict the rest of the manifestos this way
+
 
 #3. Other than the reference texts, which are the most extreme?
 
