@@ -1,0 +1,44 @@
+Vocabulary Check: Define the following terms, explain why we care:
+
+
+Corpus A
+
+Stop words B
+
+Type C
+
+Token A
+
+DFM/DTM (these are synonyms) B
+
+Stemming C
+
+Regular Expression A
+
+Supervised machine learning B
+
+Unsupervised machine learning C
+
+Precision A
+
+Accuracy B
+
+Recall C 
+
+Training / test set A
+
+Stylometry B
+
+Readability C
+
+Naive Bayes A
+
+Crowdsourcing B
+
+Cross-validation C
+
+Overfitting A
+
+Dictionary B
+
+Sentiment Analysis C
