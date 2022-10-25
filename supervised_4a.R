@@ -24,9 +24,14 @@ library(dplyr)
 library(randomForest)
 library(mlbench)
 
-install.packages("recipes")
+install.packages("Rtools")
 
 library(ggplot2)
+
+version
+
+
+
 library(caret)
 
 
@@ -80,6 +85,7 @@ news_dfm <- dfm(news_samp$text, stem = TRUE, remove_punct = TRUE, remove = stopw
 presen_absent <- news_dfm 
 presen_absent[presen_absent > 0] <- 1
 feature_count <- apply(presen_absent, 2, sum)
+?apply
 features <- names(which(feature_count > 5))
 news_dfm <- news_dfm[,features]
 
@@ -96,7 +102,7 @@ test_y <- news_samp$class[-ids_train] %>% as.factor() # test set labels
 #----------------------------------------
 library(randomForest)
 mtry = sqrt(ncol(train_x))  # number of features to sample at each split
-ntree = 51  # numbre of trees to grow
+ntree = 1001  # numbre of trees to grow
 # more trees generally improve accuracy but at the cost of computation time
 # odd numbers avoid ties (recall default aggregation is "majority voting")
 set.seed(1984)
@@ -112,9 +118,6 @@ print(rf.base)
 # = 0 if all instances the node applies to are of the same class
 # upper bound depends on number of instances
 varImpPlot(rf.base, n.var = 10, main = "Variable Importance")
-
-
-
 
 # evaluate on test set
 predicted_class_sm <- predict(rf.base, newdata = test_x)
