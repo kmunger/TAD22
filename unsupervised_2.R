@@ -52,6 +52,7 @@ blm_tweets_sum <- blm_tweets %>% group_by(date) %>% summarise(text = paste(text,
 
 blm_tweets_sum<-blm_tweets_sum[1:342,]
 
+blm_tweets_sum$date
 
 # Remove non ASCII characters
 blm_tweets_sum$text <- stringi::stri_trans_general(blm_tweets_sum$text, "latin-ascii")
