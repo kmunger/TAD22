@@ -25,17 +25,20 @@ library(rtweet)
 
 app_name <- "smapp"
 
+
+tmls$favorite_count
+
 ## copy and pasted *your* keys (these are fake)
-consumer_key <- "eJ7gTRoWULV95nWujRTLCWbXx"
-consumer_secret <- "2GZDC2WmgqYbtF5AE6xTGJTv32kO0Ys1g7xnBZ3lPmEWlrI0X2"
+consumer_key <- "qYQF4B3mp28MAn74iIEc4Og2e"
+consumer_secret <- "NW8PATIAzBZt0cAsvm4Ab3vTPDInHMjmbnz2JotisNRLoAXSJR"
 
 
-
-access_token <- "89098361-TBv6G7YSUHNfsf4JogN4OmumW2sLRpGnAkfIGnfE6"
-access_secret <- "tlwJDTQz7PHHKTKztOHZQncHTehM4e26bd3IWAgGQgVjd"
+access_token <- "89098361-MCBLt2hS68KpEzFUWYuqNi1jBuPrEipWk22rK9yos"
+access_secret <- "Tk6k1WGD9ouzZcM4dIhL8q4cdD4Ain1WUD6w3raVEnrtr"
 
 vignette('auth')
 ## create token
+
 auth <- rtweet_app()
 
 auth
@@ -51,7 +54,7 @@ auth
 
 #Search for up to 18,000 (non-retweeted) tweets containing Penn State
 ## search for 500 tweets 
-
+?search_tweets
 rt <- search_tweets(
   "Penn State", n = 500, include_rts = FALSE, token = auth
 )
@@ -60,15 +63,13 @@ rt <- search_tweets(
 rt
 
 ## preview users data
-users_data(rt)
+users<-users_data(rt)
 
 
 rt$text[1:25]
 
 #Quickly visualize frequency of tweets over time using 
 ts_plot(rt, "hours")
-
-
 
 ## plot time series of tweets
 
@@ -198,8 +199,6 @@ cnn_flw <- get_followers("cnn", n = 750, token = auth)
 cnn_flw_data <- lookup_users(cnn_flw$from_id, token = auth)
 
 
-
-
 #Or if you really want ALL of their followers:
 
 ## how many total follows does cnn have?
@@ -250,3 +249,4 @@ colnames(usrs)
 
 #Discover what's currently trending in San Francisco.
 sf <- get_trends("san francisco", token = auth)
+sf$trend

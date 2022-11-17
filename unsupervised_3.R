@@ -3,7 +3,6 @@
 # Structural Topic Models                       ---
 # -----------------------------------------------
 rm(list = ls())
-install.packages("stm")
 libraries <- c("topicmodels", "dplyr", "stm", "quanteda")
 
 lapply(libraries, require, character.only = TRUE)
@@ -70,7 +69,7 @@ plot(blog_stm, type="perspectives", topics = c(1,2))
 
 # Load data
 blm_tweets <- read.csv("blm_samp.csv", stringsAsFactors = F)
-
+library(lubridate)
 # Create date vectors
 blm_tweets$datetime <- as.POSIXct(strptime(blm_tweets$created_at, "%a %b %d %T %z %Y",tz = "GMT")) # full date/timestamp
 blm_tweets$date <- mdy(paste(month(blm_tweets$datetime), day(blm_tweets$datetime), year(blm_tweets$datetime), sep = "-")) # date only
@@ -91,10 +90,7 @@ blm_dfm <-dfm(blm_tweets_sum$text, stem = F, remove_punct = T, tolower = T, remo
               
 
 blm_dfm<-dfm_trim(blm_dfm, min_docfreq = 30)
-#install.packages("rsvd")
-library(geometry)
-library(Rtsne)
-library(rsvd)
+
 s<-stm(blm_dfm, K = 0) 
 
 
@@ -104,5 +100,8 @@ plot(s, type = "summary")
 
 # A visualization of what words are shared and distinctive to two topics
 plot(s, type="perspectives", topics = c(28,7))
+
+
+
 
 
