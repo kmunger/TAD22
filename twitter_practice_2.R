@@ -3,33 +3,26 @@
 
 ## load rtweet package
 library(rtweet)
-
+library(dplyr)
 app_name <- "smapp"
 
+
+
+
 ## copy and pasted *your* keys (these are fake)
-consumer_key <- "5y3RgYfTUOUWOGheskv4p7WWO"
-consumer_secret <- "j5pszDQ4bddt4pLiwqwezuETPYi3f1PyugM3L4eJdxUVsdwIco"
+consumer_key <- "qYQF4B3mp28MAn74iIEc4Og2e"
+consumer_secret <- "NW8PATIAzBZt0cAsvm4Ab3vTPDInHMjmbnz2JotisNRLoAXSJR"
 
 
+access_token <- "89098361-MCBLt2hS68KpEzFUWYuqNi1jBuPrEipWk22rK9yos"
+access_secret <- "Tk6k1WGD9ouzZcM4dIhL8q4cdD4Ain1WUD6w3raVEnrtr"
 
-access_token <- "89098361-YS0MquarADIDh5XvrMdMzASxzxy3apOEgzTpKZvPY"
-access_secret <- "jhZgEZuBS1mzDvMIRAhjNb9aklVN4S6UoCP7eL8l3GGIM"
-
-
+vignette('auth')
 ## create token
-token <- create_token(
-  app = app_name,
-  consumer_key = consumer_key,
-  consumer_secret = consumer_secret,
-  access_token = access_token,
-  access_secret = access_secret
-)
-## print token
-token
 
-get_token() 
+auth <- rtweet_app()
 
-
+auth
 
 
 
@@ -39,21 +32,22 @@ get_token()
 mcs<-c("@AOC", "@BernieSanders", "@EWarren", "@SpeakerPelosi", "@CoryBooker",
        "@TedCruz", "@RandPaul", "@MarcoRubio", "@dancrenshawtx", "@MittRomney")
 
+mcs_dem<-c("@AOC", "@BernieSanders", "@EWarren", "@SpeakerPelosi", "@CoryBooker")
+mcs_rep<-c("@TedCruz", "@RandPaul", "@MarcoRubio", "@dancrenshawtx", "@MittRomney")
 
 ## scrape their most recent 200 tweets 
 
-tmls <- get_timelines(mcs, n = 200, token = token)
+tmls_dem <- get_timelines(mcs_dem, n = 200, token = auth)
+tmls_rep <- get_timelines(mcs_rep, n = 200, token = auth)
 
-
-docs<-aggregate(text ~ user_id, data = tmls, paste, collapse = " ")
-
-docs$class<-c(rep("D", 5), rep("R", 5))
-
-
+docs<-data.frame(text = c(paste(tmls_dem$text, collapse = ' ') ,
+                 paste(tmls_dem$text, collapse = ' ')),
+class = c("D", "R"))
+?data.frame
 
 ### Create a DFM from the text of these tweets
 
-
+library(quanteda)
 xdfm <-dfm(docs$text, stem = F, remove_punct = T, tolower = T, remove_numbers = TRUE,
            remove = c(stopwords("english"),"¦","€","¥", "¯","~", "http","https","rt", "t.co"))
 
