@@ -1,0 +1,12 @@
+api key: YxYq85U13TD9qsMfTAzr0zoEi
+
+api key secret: jip3JRBN1ze8IxMmxlFpwI3DrF8uofuHcgGLffZhov0MaOdeCG
+
+
+access token: 89098361-KnO98QYIiikqnJIabV77as8lL6Cn1ME3rOehlKqUM
+
+access token secret: IAZoxuACbZKdYZJM7zsiCFZuUPK2DA8kSMYS5fMY8yvHr
+
+
+
+bearer: AAAAAAAAAAAAAAAAAAAAACt%2BggAAAAAAcpDDpthPHYUvydkzvU7Z5dNSO%2BY%3DOeNFdoC1oB019Zyr6eorhyXipLsnKQ3TJT8sUL6FVhoyR5jdx3
